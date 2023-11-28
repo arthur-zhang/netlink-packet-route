@@ -951,8 +951,7 @@ impl<'a, T: AsRef<[u8]> + ?Sized> Parseable<NlaBuffer<&'a T>> for InfoVxlan {
                 parse_u8(payload)
                     .context("invalid IFLA_VXLAN_TTL_INHERIT value")?,
             ),
-            __IFLA_VXLAN_MAX => Unspec(payload.to_vec()),
-            _ => return Err(format!("unknown NLA type {}", buf.kind()).into()),
+            _ => Unspec(payload.to_vec()),
         })
     }
 }
