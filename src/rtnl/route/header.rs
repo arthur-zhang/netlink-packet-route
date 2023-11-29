@@ -132,7 +132,7 @@ pub struct RouteHeader {
     pub kind: u8,
     /// Flags when querying the kernel with a `RTM_GETROUTE` message. See
     /// [`RouteFlags`].
-    pub flags: RouteFlags,
+    pub flags: u32,
 }
 
 impl<'a, T: AsRef<[u8]> + ?Sized> Parseable<RouteMessageBuffer<&'a T>>
@@ -148,7 +148,7 @@ impl<'a, T: AsRef<[u8]> + ?Sized> Parseable<RouteMessageBuffer<&'a T>>
             protocol: buf.protocol(),
             scope: buf.scope(),
             kind: buf.kind(),
-            flags: RouteFlags::from_bits_truncate(buf.flags()),
+            flags: buf.flags(),
         })
     }
 }
