@@ -168,6 +168,6 @@ impl Emitable for RouteHeader {
         buffer.set_protocol(self.protocol);
         buffer.set_scope(self.scope);
         buffer.set_kind(self.kind);
-        buffer.set_flags(self.flags.bits());
+        buffer.set_flags(self.flags);
     }
 }
